@@ -26,7 +26,7 @@ func main() {
 			case 'r':
 				slope = int(windspeed / math.Pow(float64(i+2), float64(0.5)))
 			case 'l':
-				slope = -int((i + 1) * (height - i) * windspeed)
+				slope = -int(windspeed / math.Pow(float64(i+2), float64(0.5)))
 			default:
 				slope = 0
 			}
