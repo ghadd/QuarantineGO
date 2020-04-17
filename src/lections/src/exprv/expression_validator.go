@@ -49,6 +49,7 @@ func isValid(str string) (valid bool, errpos int) {
 	var charStack, colorStack stack.Stack
 	charStack.Init()
 	colorStack.Init()
+	charsUntilError := 0
 
 	var firstErrFound bool
 	defer fmt.Println()
@@ -69,6 +70,10 @@ func isValid(str string) (valid bool, errpos int) {
 			}
 			colorStack.Push(choice)
 			colors[colorStack.Peek().(int)].Printf("%c", char)
+
+			if !firstErrFound {
+				charsUntilError++
+			}
 		case containsKey(brackets, char):
 			if charStack.Peek() == brackets[char] {
 				charStack.Pop()
@@ -78,6 +83,8 @@ func isValid(str string) (valid bool, errpos int) {
 				fmt.Printf("%c", char)
 				if !firstErrFound {
 					valid, errpos = false, pos
+					firstErrFound = true
+					charsUntilError++
 				}
 			}
 		default:
