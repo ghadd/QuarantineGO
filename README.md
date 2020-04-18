@@ -41,7 +41,7 @@ It was a good discussion and overlook of basic golang variables syntax and strin
 
 ### Lection #3 Q&A // 18.04.2020
 
-The Q&A session started on summing up the week and overall situationg among the students.
+The Q&A session started on summing up the week and overall situation among the students.
 
 1. 
 > Q. "When is it ok to attend to be hired by IT companies?" 
@@ -51,14 +51,19 @@ The Q&A session started on summing up the week and overall situationg among the 
 2. 
 > Q. "What language it's better to choose when you start learing programming stuff?"
 
-> A. "You gotta choose really unpopular language. That will help you not to concentrate the "only wanted" languate, but to understand the programming origin."
+> A. "You gotta choose really unpopular language. That will help you not to concentrate the "only wanted" language, but to understand the programming origin."
 
 3. 
 > Q. "Do I have to try harder myself or ask someone for help?"
 
-> A. "Definitely DO NOT stop on something a lot. Try asking people who may know the solution or just skip the problem for a while. The solution is going to come to your mind suddenly."
+> A. "Definitely DO NOT stop on something on a long period. Try asking people who may know the solution or just skip the problem for a while. The solution is going to come to your mind suddenly."
 
 4. 
 > Q. "Do I have to know OOP?"
 
 > A. "Sounds like self-answering question. Certainly you have to. This is the kind of basics every programmer must know no matter if you are using functional languages. Moders problems require modern solutions!"
+
+5. 
+> Q. "What university it's better to graduate from?"
+
+> A. "The university doesn't really matter. What matters - is the place it is located. It's better to choose the city, which has a bunch of IT companies located in. That's gotta work out."
