@@ -88,11 +88,17 @@ func display(data *cityData) {
 }
 
 func main() {
-	err := os.RemoveAll("src/weatherTracker/data")
+	pwd, err := os.Getwd()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	err = os.RemoveAll(pwd + "/weatherTracker/data")
 	if err != nil {
 		log.Fatal(err)
 	}
-	os.MkdirAll("src/weatherTracker/data", os.ModeDir)
+	os.MkdirAll(pwd+"/weatherTracker/data", os.ModeDir)
 
 	fmt.Print("Enter city to check weather: ")
 	fmt.Scan(&city)
@@ -102,11 +108,16 @@ func main() {
 		prevdata = data
 		data = getJSON(city)
 
+		// test
+		if longpoll == 2 {
+			prevdata.Main.FeelsLike--
+		}
+
 		display(data)
 
 		if prevdata != nil && data != nil {
 			if !reflect.DeepEqual(data, prevdata) {
-				f, err := os.Open("src/weatherTracker/assets/beep.wav")
+				f, err := os.Open(pwd + "/weatherTracker/assets/beep.wav")
 				if err != nil {
 					log.Fatal(err)
 				}
@@ -122,7 +133,7 @@ func main() {
 		}
 
 		file, _ := json.MarshalIndent(data, "", " ")
-		err := ioutil.WriteFile("src/weatherTracker/data/"+strconv.FormatInt(time.Now().UnixNano(), 10)+"data.json", file, 0644)
+		err = ioutil.WriteFile(pwd+"/weatherTracker/data/"+strconv.FormatInt(time.Now().UnixNano(), 10)+"data.json", file, 0644)
 
 		if err != nil {
 			panic(err)
