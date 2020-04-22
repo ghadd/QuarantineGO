@@ -70,6 +70,6 @@ The Q&A session started on summing up the week and overall situation among the s
 
 ### Lection #4 Writing simple algorithms // 21.04.2020
 
-Along the lection, it was discussed how to dive into codind something. Especially for bigger projects, splitting data into pieces and KISS-rule* insructions is really important to prevent messing up whilst coding. It was written a small program to solve the quadratic equation. The cool thing is GO's acceptance of complex numbers in its native package cmplx. 
+Along the lection, it was discussed how to dive into codind something. Especially for bigger projects, splitting data into pieces and KISS-rule* insructions is really important to prevent messing up whilst coding. It was written a small program to solve the quadratic equation. The cool thing is GO's acceptance of complex numbers in its native package cmplx.
 
 *KISS-rule stands for "Keep is simple, stupid" - the key rule of objectivism.

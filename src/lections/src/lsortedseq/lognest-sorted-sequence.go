@@ -47,7 +47,7 @@ func main() {
 	data = sc.Text()
 
 	lseq, ind := longestSortedSequence(data)
-	fmt.Println("Longest sequence in alphabetical order: ", lseq, "\nLength = ", len(lseq), "\n")
+	fmt.Println("Longest sequence in alphabetical order: ", lseq, "\nLength = ", len(lseq))
 
 	red := color.New(color.FgRed)
 	for pos, char := range data {
