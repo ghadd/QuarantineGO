@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	cAPIKey       = "90b34303c90966d9988b014c6388d0f4"
+	cAPIKey       = "some_api_key"
 	celsiusKelvin = 273.15
 	delaySec      = 300
 	maxPolling    = 480
