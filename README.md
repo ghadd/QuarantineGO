@@ -77,3 +77,7 @@ Along the lection, it was discussed how to dive into codind something. Especiall
 ### Lection #5 Arrays and slices // 23.04.2020
 
 We were talking about arrays and slices as contigous data containers and wrote a simple program that demontrates them in work. So, basically arrays are underlaying the slices, what is you rarely will access arrays in go. Slices by origin are immutable unless you overcome their size. Then you have to perform append to them and at the point where size is overcoming the capacity, everything from the existing array copies to the one, that has twice as much the capacity. The array/slice syntax is pretty simple and multidimensional arrays are welcome. Also we discussed the `make` syntax, so that is is able to allocate memory for arrays/slices. Not a big deal.
+
+### Lection 7 // 28.04.2020
+
+Functions, recursion and hashmaps. Basic syntax and application. Introdusing graphics library [GG](github.com/fogleman/gg) and it's basic functions.
