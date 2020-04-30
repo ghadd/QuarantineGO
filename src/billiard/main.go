@@ -20,6 +20,7 @@ const (
 	rightBorder  = 1200
 
 	ballRadius = 20
+	offset     = 50
 )
 
 var (
@@ -156,11 +157,11 @@ func draw(position *point, velocity, acceleration, angle float64) {
 		context.SetColor(getColor(gone, distance, 0xff))
 		context.Stroke()
 
-		if step%50 == 0 {
+		if step%offset == 0 {
 			context.DrawCircle(position.x, position.y, 20)
 			context.Fill()
 		}
-		context.DrawImage(ball, windowWidth/3-20, windowHeight/2-20)
+		// context.DrawImage(ball, windowWidth/3-20, windowHeight/2-20)
 
 		gone += velocity
 		velocity -= acceleration
