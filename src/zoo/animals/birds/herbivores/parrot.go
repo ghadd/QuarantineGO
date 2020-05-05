@@ -1,4 +1,4 @@
-package parrot
+package bhb
 
 import "fmt"
 
@@ -7,7 +7,6 @@ type Parrot struct {
 	isAlive bool
 
 	name               string
-	daysAlive          uint16
 	sex                string
 	age                uint8
 	isReproductive     bool
@@ -45,4 +44,33 @@ func (p *Parrot) IsAlive() bool {
 // Sound makes some sound
 func (p *Parrot) Sound() {
 	fmt.Println("ARR. I'm the parrot!")
+}
+
+// Reproduct returns a new instance os a class
+// func Reproduct() *Parrot {
+// 		return new(Parrot)
+// }
+
+// Display Displays info about a parrot
+func (p *Parrot) Display() {
+	fmt.Println(*p)
+}
+
+// NewParrot creates an instance with given params
+func NewParrot(name, sex string, isRep bool, repMinAge uint8) *Parrot {
+	return &Parrot{
+		isAlive:            true,
+		name:               name,
+		sex:                sex,
+		age:                0,
+		isReproductive:     isRep,
+		reproductionMinAge: repMinAge,
+		hunger:             0,
+		health:             0,
+	}
+}
+
+// Fly ...
+func (p *Parrot) Fly() {
+
 }

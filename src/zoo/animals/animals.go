@@ -1,11 +1,12 @@
-package animal
+package animals
 
 // Animal class starts the whole animal hierarchy
 type Animal interface {
 	LiveAnotherDay()
-	Eat() uint16
-	Reproduct() *Animal
+	Eat(uint8)
+	// Reproduct() *Animal
 	Die()
 	IsAlive() bool
 	Sound()
+	Display()
 }
