@@ -55,3 +55,7 @@ func (p *Shark) Swim() {
 func (p *Shark) Display() {
 	fmt.Println(*p)
 }
+
+func (s *Shark) Name() string {
+	return s.name
+}

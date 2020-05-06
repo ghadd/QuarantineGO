@@ -1,6 +1,11 @@
 package bpd
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+	"math/rand"
+	"time"
+)
 
 // Eagle class represents Eagles
 type Eagle struct {
@@ -17,46 +22,85 @@ type Eagle struct {
 }
 
 // LiveAnotherDay symbolized one Eagles living day
-func (p *Eagle) LiveAnotherDay() {
+func (e *Eagle) LiveAnotherDay() {
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 
+	newHealth := r.Intn(100) - 50
+	if newHealth < int(e.health) && math.Abs(float64(newHealth)) > float64(e.health) {
+		e.Die()
+	}
+	if newHealth < 0 {
+		e.health -= uint8(newHealth)
+	} else {
+		e.health += uint8(newHealth)
+	}
 }
 
 // Eat eats a certain amount of food
-func (p *Eagle) Eat(amount uint8) {
-	p.hunger += amount
+func (e *Eagle) Eat(amount uint8) {
+	e.hunger += amount
 }
 
 // Reproduce reproduces another Eagle
-func (p *Eagle) Reproduce() *Eagle {
+func (e *Eagle) Reproduce() *Eagle {
 	return new(Eagle)
 }
 
 // Die symbolizes Eagles death
-func (p *Eagle) Die() {
-	p.isAlive = false
+func (e *Eagle) Die() {
+	e.isAlive = false
 }
 
 // IsAlive returns fact of Eagle's living
-func (p *Eagle) IsAlive() bool {
-	return p.isAlive
+func (e *Eagle) IsAlive() bool {
+	return e.isAlive
 }
 
 // Sound makes some sound
-func (p *Eagle) Sound() {
+func (e *Eagle) Sound() {
 	fmt.Println("Eagle goes brrrr!")
 }
 
 // Reproduct returns a new instance os a class
-// func Reproduct() *Eagle {
-// 	return new(Eagle)
-// }
+func Reproduct() interface{} {
+	name := "predator shit"
+	var sex string
+	if rand.Intn(2) == 1 {
+		sex = "male"
+	} else {
+		sex = "female"
+	}
+	var isRep bool
+	if rand.Intn(2) == 1 {
+		isRep = true
+	}
+	return NewEagle(name, sex, isRep, 18)
+}
 
 // Display Displays info about a eagle
-func (p *Eagle) Display() {
-	fmt.Println(*p)
+func (e *Eagle) Display() {
+	fmt.Println(*e)
 }
 
 // Fly ...
-func (p *Eagle) Fly() {
+func (e *Eagle) Fly() {
+	fmt.Println("Eagle " + e.name + " is flying")
+}
 
+// NewEagle ...
+func NewEagle(name, sex string, isRep bool, repMinAge uint8) *Eagle {
+	return &Eagle{
+		isAlive:            true,
+		name:               name,
+		sex:                sex,
+		age:                0,
+		isReproductive:     isRep,
+		reproductionMinAge: repMinAge,
+		hunger:             0,
+		health:             0,
+	}
+}
+
+func (e *Eagle) Name() string {
+	return e.name
 }

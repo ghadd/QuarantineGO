@@ -2,7 +2,6 @@ package main
 
 import (
 	_ "image/png"
-	"time"
 	"zoo/animals"
 	"zoo/drawers"
 	"zoo/gen"
@@ -44,16 +43,12 @@ func run() {
 	sprites := drawers.GetSprites()
 	gen.GenerateAnimals(&population)
 
-	last := time.Now()
 	for !win.Closed() {
 		win.Clear(colornames.Skyblue)
 		imd.Draw(win)
 
-		dt := time.Since(last).Seconds()
-
-		if dt > 1 {
+		if win.Pressed(pixelgl.KeySpace) {
 			gen.Move(&population)
-			last = time.Now()
 		}
 
 		for i := 0; i < drawers.Rows; i++ {

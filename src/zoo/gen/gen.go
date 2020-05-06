@@ -37,9 +37,9 @@ func GenerateAnimals(an *[]animals.Animal) {
 			sp := rand.Intn(species)
 			switch sp {
 			case eParrot:
-				(*an)[i] = new(bhb.Parrot)
+				(*an)[i] = bhb.NewParrot("f", "male", true, 19)
 			case eEagle:
-				(*an)[i] = new(bpd.Eagle)
+				(*an)[i] = bpd.NewEagle("wdfsdf", "female", false, 10)
 			case eWhale:
 				(*an)[i] = new(fhb.Whale)
 			case eShark:

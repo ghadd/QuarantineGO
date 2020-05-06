@@ -55,3 +55,7 @@ func (p *Lion) DoSex() {
 func (p *Lion) Display() {
 	fmt.Println(*p)
 }
+
+func (l *Lion) Name() string {
+	return l.name
+}

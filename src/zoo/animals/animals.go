@@ -4,9 +4,10 @@ package animals
 type Animal interface {
 	LiveAnotherDay()
 	Eat(uint8)
-	// Reproduct() *Animal
+	//Reproduct() interface{}
 	Die()
 	IsAlive() bool
 	Sound()
 	Display()
+	Name() string
 }

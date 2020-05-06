@@ -55,3 +55,7 @@ func (p *Giraffe) DoSex() {
 func (p *Giraffe) Display() {
 	fmt.Println(*p)
 }
+
+func (g *Giraffe) Name() string {
+	return g.name
+}

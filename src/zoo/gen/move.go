@@ -27,6 +27,9 @@ func rawToVec(r int) pixel.Vec {
 }
 
 func isEmpty(an *[]animals.Animal, pos pixel.Vec) bool {
+	if pos.X < 0 || pos.Y < 0 || pos.X >= drawers.Cols || pos.Y >= drawers.Rows {
+		return false
+	}
 	return (*an)[vecToRaw(pos)] == nil
 }
 
@@ -49,6 +52,10 @@ func shuffle(vals1 []bool, vals2 []pixel.Vec) ([]bool, []pixel.Vec) {
 // Move moves animals
 func Move(an *[]animals.Animal) {
 	for i := 0; i < len(*an); i++ {
+		if (*an)[i] == nil {
+			continue
+		}
+
 		var free []bool
 		var correspondingDir []pixel.Vec
 
@@ -59,19 +66,22 @@ func Move(an *[]animals.Animal) {
 		current := rawToVec(i)
 		for j := range dir {
 			dest := current.Add(dir[j])
-			if dest.X < 0 || dest.Y < 0 || dest.X >= drawers.Cols || dest.Y >= drawers.Rows {
-				free = append(free, false)
-				continue
-			}
 			free = append(free, isEmpty(an, dest))
 		}
 
-		fmt.Println(free, correspondingDir)
 		free, correspondingDir = shuffle(free, correspondingDir)
-		fmt.Println(free, correspondingDir)
 
 		for j, v := range free {
-			if v {
+			if !v {
+				dest := current.Add(correspondingDir[j])
+				if dest.X < 0 || dest.Y < 0 || dest.X >= drawers.Cols || dest.Y >= drawers.Rows {
+					continue
+				} else {
+					if GetKey((*an)[i]) == GetKey((*an)[vecToRaw(dest)]) {
+						fmt.Println(typeof((*an)[i]) + " " + (*an)[i].Name() + " met a friend " + (*an)[vecToRaw(dest)].Name())
+					}
+				}
+			} else {
 				(*an)[vecToRaw(current)], (*an)[vecToRaw(current.Add(correspondingDir[j]))] = (*an)[vecToRaw(current.Add(correspondingDir[j]))], (*an)[vecToRaw(current)]
 			}
 		}

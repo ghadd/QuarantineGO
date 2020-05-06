@@ -55,3 +55,7 @@ func (p *Whale) Swim() {
 func (p *Whale) Display() {
 	fmt.Println(*p)
 }
+
+func (w *Whale) Name() string {
+	return w.name
+}
