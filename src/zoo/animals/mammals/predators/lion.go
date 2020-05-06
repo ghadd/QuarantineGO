@@ -51,7 +51,7 @@ func (p *Lion) DoSex() {
 
 }
 
-// Display Displays info about a parrot
+// Display Displays info about a lion
 func (p *Lion) Display() {
 	fmt.Println(*p)
 }

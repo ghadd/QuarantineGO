@@ -54,8 +54,7 @@ func GetSprites() map[string]*pixel.Sprite {
 
 	sprites := make(map[string]*pixel.Sprite)
 	for i := range pics {
-		fmt.Println(strings.Index(filenames[i], "/"))
-		key := filenames[i][strings.Index(filenames[i], "/")+1:]
+		key := filenames[i][strings.Index(filenames[i][4:], "/")+5 : strings.Index(filenames[i], ".")]
 		value := pixel.NewSprite(pics[i], pics[i].Bounds())
 		sprites[key] = value
 	}

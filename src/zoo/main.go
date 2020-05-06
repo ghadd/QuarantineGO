@@ -2,8 +2,10 @@ package main
 
 import (
 	_ "image/png"
+	"time"
 	"zoo/animals"
 	"zoo/drawers"
+	"zoo/gen"
 
 	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/imdraw"
@@ -14,24 +16,20 @@ import (
 var (
 	populationSize = 100
 	population     = make([]animals.Animal, populationSize)
-)
 
-// animals enum
-const (
-	eParrot  = iota
-	eEagle   = iota
-	eWhale   = iota
-	eShark   = iota
-	eGiraffe = iota
-	eLion    = iota
-
-	// goes for total number of species available
-	species = iota
+	anims = []string{
+		"parrot",
+		"eagle",
+		"whale",
+		"shark",
+		"giraffe",
+		"lion",
+	}
 )
 
 func run() {
 	cfg := pixelgl.WindowConfig{
-		Title:  "Pixel Rocks!",
+		Title:  "Zoo!",
 		Bounds: pixel.R(0, 0, drawers.WindowWidth, drawers.WindowHeight),
 		VSync:  true,
 	}
@@ -44,44 +42,38 @@ func run() {
 
 	drawers.DrawGrid(imd)
 	sprites := drawers.GetSprites()
+	gen.GenerateAnimals(&population)
 
+	last := time.Now()
 	for !win.Closed() {
 		win.Clear(colornames.Skyblue)
 		imd.Draw(win)
 
-		i := 0.
-		for _, v := range sprites {
-			pos := pixel.IM.Moved(pixel.V(i*60, i*60)).Scaled(pixel.V(i*60, i*60), 0.01)
-			//fmt.Println(pos)
-			v.Draw(win, pos)
-			i++
+		dt := time.Since(last).Seconds()
+
+		if dt > 1 {
+			gen.Move(&population)
+			last = time.Now()
 		}
+
+		for i := 0; i < drawers.Rows; i++ {
+			for j := 0; j < drawers.Cols; j++ {
+				if population[i*drawers.Cols+j] == nil {
+					continue
+				}
+
+				mat := pixel.IM
+				mat = mat.ScaledXY(pixel.ZV, pixel.V(drawers.OffsetW/100, drawers.OffsetH/100))
+				mat = mat.Moved(pixel.V(drawers.OffsetW*(float64(i)+0.5), drawers.OffsetH*(float64(j)+0.5)))
+
+				sprites[gen.GetKey(population[i*drawers.Cols+j])].Draw(win, mat)
+			}
+		}
+
 		win.Update()
 	}
 }
 
 func main() {
 	pixelgl.Run(run)
-
-	// for i := 0; i < populationSize; i++ {
-	// 	sp := rand.Intn(species)
-	// 	switch sp {
-	// 	case eParrot:
-	// 		population[i] = new(bhb.Parrot)
-	// 	case eEagle:
-	// 		population[i] = new(bpd.Eagle)
-	// 	case eWhale:
-	// 		population[i] = new(fhb.Whale)
-	// 	case eShark:
-	// 		population[i] = new(fpd.Shark)
-	// 	case eGiraffe:
-	// 		population[i] = new(mhb.Giraffe)
-	// 	case eLion:
-	// 		population[i] = new(mpd.Lion)
-	// 	}
-	// }
-
-	// for _, v := range population {
-	// 	v.Sound()
-	// }
 }
